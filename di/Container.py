@@ -1,6 +1,6 @@
 from dependency_injector import containers, providers
 
-from dependency_impl import ChkPreConImpl, GetHtmlImpl
+from dependency_impl import ChkPreConImpl, GetHtmlImpl, ParseHtmlImpl
 
 
 class Container(containers.DeclarativeContainer):
@@ -22,4 +22,8 @@ class Container(containers.DeclarativeContainer):
 
     get_html = providers.Factory(
         GetHtmlImpl
+    )
+
+    parse_html = providers.Factory(
+        ParseHtmlImpl
     )

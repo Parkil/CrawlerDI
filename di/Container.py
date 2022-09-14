@@ -1,6 +1,6 @@
 from dependency_injector import containers, providers
 
-from dependency_impl import ChkPreConImpl, GetHtmlImpl, ParseHtmlImpl
+from dependency_impl import ChkPreConImpl, GetHtmlImpl, ParseHtmlImpl, GetUrlListImpl
 
 
 class Container(containers.DeclarativeContainer):
@@ -18,6 +18,10 @@ class Container(containers.DeclarativeContainer):
     chk_pre_con = providers.Factory(
         ChkPreConImpl,
         add_param='123123124124'
+    )
+
+    get_url_list = providers.Factory(
+        GetUrlListImpl
     )
 
     get_html = providers.Factory(

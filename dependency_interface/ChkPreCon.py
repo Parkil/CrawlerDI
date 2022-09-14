@@ -1,5 +1,4 @@
 import abc
-from typing import Any
 
 
 class ChkPreCon(metaclass=abc.ABCMeta):

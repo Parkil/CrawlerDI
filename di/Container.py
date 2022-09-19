@@ -1,6 +1,6 @@
 from dependency_injector import containers, providers
 
-from dependency_impl import ChkPreConImpl, GetHtmlImpl, ParseHtmlImpl, GetUrlListImpl
+from dependency_impl import ChkPreConImpl, GetHtmlImpl, ParseHtmlImpl, GetUrlListImpl, SaveDataImpl
 
 
 class Container(containers.DeclarativeContainer):
@@ -10,14 +10,14 @@ class Container(containers.DeclarativeContainer):
 
     """
     chk_pre_con : 크롤러 작동 사전 조건 체크
+    get_url_list : url 리스트 반환
     get_html : url 에서 html 문자열 을 가져 온다
     parse_html : html 문자열 을 parsing 하여 원하는 정보를 추출 한다
-    result_formatting : parse_html 에서 추출한 정보를 원하는 형식 으로 포맷팅 한다
+    save_data : parse_html 에서 추출한 정보를 저장 한다
     """
 
     chk_pre_con = providers.Factory(
-        ChkPreConImpl,
-        add_param='123123124124'
+        ChkPreConImpl
     )
 
     get_url_list = providers.Factory(
@@ -30,4 +30,8 @@ class Container(containers.DeclarativeContainer):
 
     parse_html = providers.Factory(
         ParseHtmlImpl
+    )
+
+    save_data = providers.Factory(
+        SaveDataImpl
     )

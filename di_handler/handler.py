@@ -2,7 +2,7 @@ from typing import List
 
 from dependency_injector.wiring import Provide, inject
 
-from dependency_interface import ChkPreCon, GetHtml, ParseHtml, GetUrlList
+from dependency_interface import ChkPreCon, GetHtml, ParseHtml, GetUrlList, SaveData
 from di import Container
 
 
@@ -42,3 +42,11 @@ def parse_html(
         parse_html_di: ParseHtml = Provide[Container.parse_html]
 ) -> dict:
     return parse_html_di.parse_html(html_dict)
+
+
+@inject
+def save_data(
+        parse_html_result: dict,
+        save_data_di: SaveData = Provide[Container.save_data]
+) -> dict:
+    return save_data_di.save(parse_html_result)

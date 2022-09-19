@@ -1,7 +1,7 @@
 from typing import List
 
 from di import Container
-from di_handler.handler import chk_pre_con, get_htmls, parse_html, get_url_list
+from di_handler.handler import chk_pre_con, get_htmls, parse_html, get_url_list, save_data
 
 
 def run_crawler():
@@ -19,6 +19,9 @@ def run_crawler():
     parse_result_dict: dict = parse_html(result_dict)
     print(parse_result_dict)
 
+    save_data(parse_result_dict)
+
 
 if __name__ == "__main__":
     run_crawler()
+

@@ -1,3 +1,4 @@
+import logging
 from typing import List
 
 from dependency_impl.util import ParseHtmlUtil, JsonUtil
@@ -7,8 +8,10 @@ from dependency_interface import ParseHtml
 
 class ParseHtmlImpl(ParseHtml):
 
+    logger = logging.getLogger('detail')
+
     def __init__(self):
-        print('ParseHtmlImpl init')
+        self.logger.info('ParseHtmlImpl init')
 
     def __parse_single_data(self, html_con: str) -> str:
         ret_list: List[NovelSubject] = ParseHtmlUtil.get_all_links(html_con)

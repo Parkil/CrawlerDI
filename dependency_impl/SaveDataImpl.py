@@ -1,14 +1,17 @@
+import logging
 
 from dependency_interface import SaveData
 
 
 class SaveDataImpl(SaveData):
 
+    logger = logging.getLogger('detail')
+
     def __init__(self):
-        print('SaveDataImpl init')
+        self.logger.info('SaveDataImpl init')
 
     def save(self, parse_html_result: dict):
-        print('save called : ', parse_html_result)
+        self.logger.info('save called : %s', parse_html_result)
 
 
 

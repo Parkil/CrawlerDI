@@ -6,7 +6,7 @@ from dependency_impl import ChkPreConImpl, GetHtmlImpl, ParseHtmlImpl, GetUrlLis
 class Container(containers.DeclarativeContainer):
 
     # 해당 로직이 정상 작동 하지 않으면 @inject 에서 나오는 type 이 <class 'dependency_injector.wiring.Provide'> 로 고정된다
-    wiring_config = containers.WiringConfiguration(packages=["di_handler"])
+    # wiring_config = containers.WiringConfiguration(packages=["di_handler"])
 
     """
     chk_pre_con : 크롤러 작동 사전 조건 체크

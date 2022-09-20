@@ -1,3 +1,4 @@
+import logging
 from typing import List
 
 from dependency_injector.wiring import Provide, inject
@@ -5,48 +6,29 @@ from dependency_injector.wiring import Provide, inject
 from dependency_interface import ChkPreCon, GetHtml, ParseHtml, GetUrlList, SaveData
 from di import Container
 
-
-@inject
-def chk_pre_con(
-        chk_pre_con_di: ChkPreCon = Provide[Container.chk_pre_con],
-) -> bool:
-    return chk_pre_con_di.chk_pre_con()
+logger = logging.getLogger('detail')
 
 
 @inject
-def get_url_list(
-        get_url_list_di: GetUrlList = Provide[Container.get_url_list],
-) -> List[str]:
-    return get_url_list_di.get_url_list()
+def run_crawler(
+        chk_pre_con: ChkPreCon = Provide[Container.chk_pre_con],
+        get_url_list: GetUrlList = Provide[Container.get_url_list],
+        get_html: GetHtml = Provide[Container.get_html],
+        parse_html: ParseHtml = Provide[Container.parse_html],
+        save_data: SaveData = Provide[Container.save_data]
+) -> None:
+    chk_result: bool = chk_pre_con.chk_pre_con()
 
+    if chk_result is False:
+        raise Exception('crawler chk result false')
 
-@inject
-def get_html(
-        url: str,
-        get_html_di: GetHtml = Provide[Container.get_html]
-) -> dict:
-    return get_html_di.get_html(url)
+    __url_list: List[str] = get_url_list.get_url_list()
+    logger.info('url_list : %s', __url_list)
 
+    __result_dict: dict = get_html.get_htmls(__url_list)
+    logger.info('result_dict : %s', __result_dict)
 
-@inject
-def get_htmls(
-        url_list: List[str],
-        get_html_di: GetHtml = Provide[Container.get_html]
-) -> dict:
-    return get_html_di.get_htmls(url_list)
+    __parse_result_dict: dict = parse_html.parse_html(__result_dict)
+    logger.info('parse_result_dict : %s', __parse_result_dict)
 
-
-@inject
-def parse_html(
-        html_dict: dict,
-        parse_html_di: ParseHtml = Provide[Container.parse_html]
-) -> dict:
-    return parse_html_di.parse_html(html_dict)
-
-
-@inject
-def save_data(
-        parse_html_result: dict,
-        save_data_di: SaveData = Provide[Container.save_data]
-) -> dict:
-    return save_data_di.save(parse_html_result)
+    save_data.save(__parse_result_dict)

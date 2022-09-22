@@ -1,6 +1,6 @@
 import logging
 
-from dependency_interface import SaveData
+from abstract import SaveData
 
 
 class SaveDataImpl(SaveData):

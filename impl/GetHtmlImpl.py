@@ -3,7 +3,7 @@ from typing import List
 
 import aiohttp
 
-from dependency_interface.GetHtml import GetHtml
+from abstract.GetHtml import GetHtml
 
 
 class GetHtmlImpl(GetHtml):

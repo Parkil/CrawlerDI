@@ -3,7 +3,7 @@ from typing import List
 import bs4
 from bs4 import BeautifulSoup
 
-from dependency_impl.vo import NovelSubject
+from impl.vo import NovelSubject
 
 
 class ParseHtmlUtil:

@@ -1,9 +1,9 @@
 import logging
 from typing import List
 
-from dependency_impl.util import ParseHtmlUtil, JsonUtil
-from dependency_impl.vo import NovelSubject
-from dependency_interface import ParseHtml
+from impl.util import ParseHtmlUtil, JsonUtil
+from impl.vo import NovelSubject
+from abstract import ParseHtml
 
 
 class ParseHtmlImpl(ParseHtml):

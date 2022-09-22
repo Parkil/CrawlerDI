@@ -1,6 +1,6 @@
 import logging
 
-from dependency_interface.ChkPreCon import ChkPreCon
+from abstract.ChkPreCon import ChkPreCon
 
 
 class ChkPreConImpl(ChkPreCon):

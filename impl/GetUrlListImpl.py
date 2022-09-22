@@ -1,7 +1,7 @@
 import logging
 from typing import List
 
-from dependency_interface import GetUrlList
+from abstract import GetUrlList
 
 
 class GetUrlListImpl(GetUrlList):

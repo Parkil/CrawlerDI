@@ -1,3 +1,6 @@
+from impl.util import JsonUtil
+
+
 class NovelSubject:
     __slots__ = ['subject', 'detail_url']
 
@@ -12,4 +15,4 @@ class NovelSubject:
         }
 
     def __str__(self):
-        return CommonComponent.json_dump(self.json_dict())
+        return JsonUtil.json_dump(self.json_dict())

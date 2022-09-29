@@ -1,10 +1,13 @@
 import abc
+from typing import List
+
+from abstract.vo import ParseHtmlInfo
 
 
 class SaveData(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
-    def save(self, parse_html_result: dict):
+    def save(self, parse_html_list: List[ParseHtmlInfo]):
         raise NotImplementedError
 
     @classmethod

@@ -1,15 +1,17 @@
 import abc
 from typing import List
 
+from abstract.vo import HtmlInfo
+
 
 class GetHtml(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
-    def get_html(self, url: str) -> dict:
+    def get_html(self, url: str) -> HtmlInfo:
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_htmls(self, url_list: List[str]) -> dict:
+    def get_htmls(self, url_list: List[str]) -> List[HtmlInfo]:
         raise NotImplementedError
 
     @classmethod

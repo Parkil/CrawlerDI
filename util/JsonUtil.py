@@ -1,7 +1,7 @@
 import json
 
 
-def default(obj):
+def __default(obj):
     if hasattr(obj, 'json_dict'):
         return obj.json_dict()
     else:
@@ -10,4 +10,4 @@ def default(obj):
 
 
 def json_dump(param_obj: object) -> str:
-    return json.dumps(param_obj, ensure_ascii=False, default=default)
+    return json.dumps(param_obj, ensure_ascii=False, default=__default)

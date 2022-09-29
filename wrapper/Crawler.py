@@ -3,6 +3,7 @@ import logging
 from typing import List
 
 from abstract import ChkPreCon, GetUrlList, GetHtml, ParseHtml, SaveData
+from abstract.vo import HtmlInfo, ParseHtmlInfo
 from config.exception import CrawlerException
 
 logger = logging.getLogger('detail')
@@ -25,10 +26,9 @@ class Crawler:
         __url_list: List[str] = self.get_url_list.get_url_list()
         logger.info('url_list : %s', __url_list)
 
-        __result_dict: dict = self.get_html.get_htmls(__url_list)
-        logger.info('result_dict : %s', __result_dict)
+        __html_list: List[HtmlInfo] = self.get_html.get_htmls(__url_list)
 
-        __parse_result_dict: dict = self.parse_html.parse_html(__result_dict)
-        logger.info('parse_result_dict : %s', __parse_result_dict)
+        __parse_html_info_list: List[ParseHtmlInfo] = self.parse_html.parse_htmls(__html_list)
+        logger.info('parse_result_dict : %s', __parse_html_info_list)
 
-        self.save_data.save(__parse_result_dict)
+        self.save_data.save(__parse_html_info_list)

@@ -1,5 +1,2 @@
 dependency-injector
-aiohttp
-beautifulsoup4
-html5lib
 multipledispatch
